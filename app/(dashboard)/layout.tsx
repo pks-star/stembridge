@@ -18,7 +18,10 @@ import {
   Users,
   Video,
   Calculator,
-  Award
+  Award,
+  Trophy,
+  Target,
+  Heart
 } from 'lucide-react'
 
 function DashboardContent({ children }: { children: React.ReactNode }) {
@@ -45,12 +48,15 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
     { href: '/dashboard', label: t.nav.dashboard, icon: LayoutDashboard },
     { href: '/chat', label: t.nav.aiTutor, icon: MessageSquare },
     { href: '/topics', label: t.nav.topics, icon: BookOpen },
+    { href: '/practice', label: 'Practice', icon: Target },
     { href: '/exams', label: t.nav.examPrep, icon: GraduationCap },
     { href: '/careers', label: t.nav.careers, icon: Briefcase },
     { href: '/groups', label: 'Study Groups', icon: Users },
     { href: '/resources', label: 'Videos', icon: Video },
     { href: '/scholarships', label: 'Scholarships', icon: Award },
     { href: '/calculators', label: 'Calculators', icon: Calculator },
+    { href: '/leaderboard', label: 'Leaderboard', icon: Trophy },
+    { href: '/parent', label: 'Parent View', icon: Heart },
     { href: '/profile', label: t.nav.profile, icon: User },
   ]
 
