@@ -79,6 +79,62 @@ export interface Topic {
   name: string
   name_fr: string
   prerequisites: string[]
+  grade_level: string
+  description: string
+  description_fr: string
+  objectives: string[]
+  objectives_fr: string[]
+  content: string
+  content_fr: string
+  examples: { question: string; solution: string }[]
+  practice_problems: { question: string; answer?: string; solution?: string; hint?: string }[]
+  key_formulas?: string[]
+  video_resources?: { title: string; url: string }[]
+  unit_test?: Quiz
+  quiz?: Quiz
+}
+
+export interface Quiz {
+  id: string
+  title: string
+  title_fr: string
+  description: string
+  description_fr: string
+  questions: QuizQuestion[]
+  passing_score: number
+  xp_reward: number
+  time_limit?: number
+}
+
+export interface QuizQuestion {
+  id: string
+  question: string
+  question_fr: string
+  options?: string[]
+  options_fr?: string[]
+  correct_answer: number
+  explanation: string
+  explanation_fr: string
+}
+
+export interface FinalExam {
+  id: string
+  subject_id: string
+  grade_level: string
+  title: string
+  title_fr: string
+  description: string
+  description_fr: string
+  sections: ExamSection[]
+  passing_score: number
+  xp_reward: number
+  time_limit: number
+}
+
+export interface ExamSection {
+  title: string
+  title_fr: string
+  questions: QuizQuestion[]
 }
 
 export interface XPEvent {

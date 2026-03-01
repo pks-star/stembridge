@@ -12,7 +12,7 @@ import {
   User,
   Flame,
   Zap,
-  Brain,
+  Lightbulb,
   Briefcase,
   GraduationCap,
   Users,
@@ -62,14 +62,14 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gray-50 flex">
-        <aside className="w-64 bg-white border-r border-gray-200 fixed h-full">
+      <div className="min-h-screen bg-stone-50 flex">
+        <aside className="w-64 bg-white border-r border-stone-200 fixed h-full">
           <div className="p-6">
             <Link href="/" className="flex items-center gap-2 mb-8">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <Brain className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-teal-200">
+                <Lightbulb className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">STEMBridge</span>
+              <span className="text-xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>STEMBridge</span>
             </Link>
           </div>
         </aside>
@@ -81,38 +81,38 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-stone-50 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 fixed h-full">
+      <aside className="w-64 bg-white border-r border-stone-200 fixed h-full">
         <div className="p-6">
           <Link href="/" className="flex items-center gap-2 mb-8">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-              <Brain className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-teal-200">
+              <Lightbulb className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">STEMBridge</span>
+            <span className="text-xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>STEMBridge</span>
           </Link>
 
           {/* Quick Stats */}
-          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-4 mb-6">
+          <div className="bg-gradient-to-br from-teal-50 to-emerald-50 rounded-xl p-4 mb-6 border border-teal-100">
             <div className="flex items-center gap-2 mb-2">
               <Flame className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-medium text-gray-700">7 Day Streak!</span>
+              <span className="text-sm font-medium text-stone-700">7 Day Streak!</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-yellow-500" />
-              <span className="text-sm font-medium text-gray-700">1,250 XP</span>
+              <Zap className="w-4 h-4 text-amber-500" />
+              <span className="text-sm font-medium text-stone-700">1,250 XP</span>
             </div>
           </div>
 
           {/* Language Toggle */}
-          <div className="mb-4 p-2 bg-gray-50 rounded-lg">
+          <div className="mb-4 p-1.5 bg-stone-100 rounded-lg">
             <div className="flex gap-1">
               <button
                 onClick={() => handleSetLanguage('en')}
                 className={`flex-1 py-1.5 px-2 rounded text-xs font-medium transition-colors ${
                   language === 'en' 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-600 hover:bg-gray-200'
+                    ? 'bg-teal-600 text-white shadow-sm' 
+                    : 'text-stone-600 hover:bg-stone-200'
                 }`}
               >
                 EN
@@ -121,8 +121,8 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
                 onClick={() => handleSetLanguage('fr')}
                 className={`flex-1 py-1.5 px-2 rounded text-xs font-medium transition-colors ${
                   language === 'fr' 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-600 hover:bg-gray-200'
+                    ? 'bg-teal-600 text-white shadow-sm' 
+                    : 'text-stone-600 hover:bg-stone-200'
                 }`}
               >
                 FR
@@ -140,14 +140,14 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors",
+                    "flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200",
                     isActive 
-                      ? "bg-blue-50 text-blue-700" 
-                      : "text-gray-600 hover:bg-gray-50"
+                      ? "bg-teal-50 text-teal-700 font-medium" 
+                      : "text-stone-600 hover:bg-stone-50 hover:text-stone-900"
                   )}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="font-medium">{item.label}</span>
+                  <Icon className={cn("w-5 h-5", isActive && "text-teal-600")} />
+                  <span>{item.label}</span>
                 </Link>
               )
             })}

@@ -3,33 +3,33 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { curriculum } from '@/data/curriculum/ontario'
-import { BookOpen, CheckCircle, Circle, Lock, ChevronRight, Sparkles } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
+import { BookOpen, CheckCircle, Circle, Lock, ChevronRight, Sparkles, Calculator, Atom, FlaskConical, Leaf, Code2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
-const subjectEmojis: Record<string, string> = {
-  math: '📐',
-  physics: '⚡',
-  chemistry: '🧪',
-  biology: '🧬',
-  coding: '💻',
+const subjectIcons: Record<string, React.ReactNode> = {
+  math: <Calculator className="w-4 h-4" />,
+  physics: <Atom className="w-4 h-4" />,
+  chemistry: <FlaskConical className="w-4 h-4" />,
+  biology: <Leaf className="w-4 h-4" />,
+  coding: <Code2 className="w-4 h-4" />,
 }
 
 const subjectColors: Record<string, string> = {
-  math: 'from-blue-500 to-blue-600',
-  physics: 'from-purple-500 to-purple-600',
-  chemistry: 'from-green-500 to-green-600',
-  biology: 'from-emerald-500 to-emerald-600',
-  coding: 'from-orange-500 to-orange-600',
+  math: 'from-emerald-500 to-teal-600',
+  physics: 'from-violet-500 to-purple-600',
+  chemistry: 'from-rose-500 to-pink-600',
+  biology: 'from-green-500 to-emerald-600',
+  coding: 'from-slate-500 to-zinc-600',
 }
 
 const subjectAccentColors: Record<string, string> = {
-  math: 'blue',
-  physics: 'purple',
-  chemistry: 'green',
-  biology: 'emerald',
-  coding: 'orange',
+  math: 'emerald',
+  physics: 'violet',
+  chemistry: 'rose',
+  biology: 'green',
+  coding: 'slate',
 }
 
 export default function TopicsPage() {
@@ -67,7 +67,7 @@ export default function TopicsPage() {
                 : ''
             }`}
           >
-            <span>{subjectEmojis[subject.id]}</span>
+            <span>{subjectIcons[subject.id]}</span>
             <span>{subject.name}</span>
           </Button>
         ))}

@@ -14,12 +14,12 @@ import {
   Award,
   Trophy,
   Star,
-  Crown
+  Crown,
+  Lightbulb
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 
 const mockProgress = {
   xp: 1250,
@@ -37,26 +37,24 @@ const mockProgress = {
 }
 
 const recentTopics = [
-  { subject: 'Mathematics', topic: 'Quadratic Equations', mastery: 85, progress: '+15%', color: 'bg-blue' },
-  { subject: 'Physics', topic: 'Kinematics', mastery: 60, progress: '+10%', color: 'bg-purple' },
-  { subject: 'Coding', topic: 'Python Functions', mastery: 92, progress: '+8%', color: 'bg-green' },
+  { subject: 'Mathematics', topic: 'Quadratic Equations', mastery: 85, progress: '+15%', color: 'bg-emerald-500' },
+  { subject: 'Physics', topic: 'Kinematics', mastery: 60, progress: '+10%', color: 'bg-violet-500' },
+  { subject: 'Coding', topic: 'Python Functions', mastery: 92, progress: '+8%', color: 'bg-slate-500' },
 ]
 
 const achievements = [
-  { icon: <Flame className="w-5 h-5" />, name: '7 Day Streak', earned: true, color: 'from-orange-500 to-red-500' },
+  { icon: <Flame className="w-5 h-5" />, name: '7 Day Streak', earned: true, color: 'from-orange-500 to-amber-500' },
   { icon: <Star className="w-5 h-5" />, name: '10 Topics Mastered', earned: true, color: 'from-yellow-500 to-amber-500' },
-  { icon: <Crown className="w-5 h-5" />, name: 'Level 5 Reached', earned: true, color: 'from-purple-500 to-pink-500' },
-  { icon: <Target className="w-5 h-5" />, name: 'Perfect Quiz', earned: false, color: 'from-gray-400 to-gray-500' },
-  { icon: <Trophy className="w-5 h-5" />, name: '100 Topics', earned: false, color: 'from-gray-400 to-gray-500' },
+  { icon: <Crown className="w-5 h-5" />, name: 'Level 5 Reached', earned: true, color: 'from-teal-500 to-emerald-500' },
+  { icon: <Target className="w-5 h-5" />, name: 'Perfect Quiz', earned: false, color: 'from-stone-400 to-stone-500' },
+  { icon: <Trophy className="w-5 h-5" />, name: '100 Topics', earned: false, color: 'from-stone-400 to-stone-500' },
 ]
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+    transition: { staggerChildren: 0.1 }
   }
 }
 
@@ -68,7 +66,12 @@ const itemVariants = {
 export default function DashboardPage() {
   const [progress] = useState(mockProgress)
 
-  const levelProgress = ((progress.xp % 500) / 500) * 100
+  const stats = [
+    { icon: <Zap className="w-5 h-5" />, value: progress.xp.toLocaleString(), label: 'Total XP', sub: `Level ${progress.level}`, color: 'bg-amber-100 text-amber-600', gain: '+250' },
+    { icon: <Flame className="w-5 h-5" />, value: `${progress.streak} days`, label: 'Current Streak', sub: 'Best: 14 days', color: 'bg-orange-100 text-orange-600', gain: null },
+    { icon: <MessageSquare className="w-5 h-5" />, value: progress.totalSessions, label: 'Total Sessions', sub: 'This week: 5', color: 'bg-teal-100 text-teal-600', gain: null },
+    { icon: <Clock className="w-5 h-5" />, value: progress.weeklyMinutes, label: 'Minutes This Week', sub: '+45 min vs last week', color: 'bg-emerald-100 text-emerald-600', gain: null },
+  ]
 
   return (
     <motion.div 
@@ -79,34 +82,31 @@ export default function DashboardPage() {
     >
       {/* Header */}
       <motion.div variants={itemVariants} className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Welcome back! 👋</h1>
-        <p className="text-gray-500 mt-1">Keep up the great work. You're on a {progress.streak}-day streak!</p>
+        <h1 className="text-3xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+          Welcome back!
+        </h1>
+        <p className="text-stone-500 mt-1">Keep up the great work. You're on a {progress.streak}-day streak!</p>
       </motion.div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {[
-          { icon: <Zap className="w-5 h-5" />, value: progress.xp.toLocaleString(), label: 'Total XP', sub: `Level ${progress.level}`, color: 'bg-yellow-100 text-yellow-600', gain: '+250' },
-          { icon: <Flame className="w-5 h-5" />, value: `${progress.streak} days`, label: 'Current Streak', sub: 'Best: 14 days', color: 'bg-orange-100 text-orange-600', gain: null },
-          { icon: <MessageSquare className="w-5 h-5" />, value: progress.totalSessions, label: 'Total Sessions', sub: 'This week: 5', color: 'bg-blue-100 text-blue-600', gain: null },
-          { icon: <Clock className="w-5 h-5" />, value: progress.weeklyMinutes, label: 'Minutes This Week', sub: '+45 min vs last week', color: 'bg-green-100 text-green-600', gain: null },
-        ].map((stat, i) => (
+        {stats.map((stat, i) => (
           <motion.div key={i} variants={itemVariants}>
-            <Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-300">
+            <Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-300 bg-white">
               <CardContent className="p-5">
                 <div className="flex items-center justify-between mb-3">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${stat.color}`}>
                     {stat.icon}
                   </div>
                   {stat.gain && (
-                    <Badge variant="secondary" className="bg-green-100 text-green-700 text-xs">
+                    <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 text-xs">
                       <ArrowUpRight className="w-3 h-3 mr-0.5" /> {stat.gain}
                     </Badge>
                   )}
                 </div>
-                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                <div className="text-sm text-gray-500">{stat.label}</div>
-                <div className="text-xs text-gray-400 mt-1">{stat.sub}</div>
+                <div className="text-2xl font-bold text-stone-900">{stat.value}</div>
+                <div className="text-sm text-stone-500">{stat.label}</div>
+                <div className="text-xs text-stone-400 mt-1">{stat.sub}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -117,11 +117,11 @@ export default function DashboardPage() {
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Mastery Chart */}
         <motion.div variants={itemVariants} className="lg:col-span-2">
-          <Card className="border-0 shadow-md h-full">
+          <Card className="border-0 shadow-md h-full bg-white">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between">
+              <CardTitle className="flex items-center justify-between" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
                 <span>Subject Mastery</span>
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                <Badge variant="outline" className="bg-teal-50 text-teal-700 border-teal-200">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   Top 27%
                 </Badge>
@@ -129,38 +129,38 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-5">
-                {Object.entries(progress.mastery).map(([subject, value], i) => (
-                  <motion.div 
-                    key={subject}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-4"
-                  >
-                    <div className="w-20 text-sm font-medium text-gray-700 capitalize">{subject}</div>
-                    <div className="flex-1">
-                      <Progress 
-                        value={value} 
-                        className="h-2.5 bg-gray-100"
-                        style={{
-                          '--progress-color': `hsl(${(i * 40) % 360}, 70%, 50%)`
-                        } as React.CSSProperties}
-                      />
-                    </div>
-                    <div className="w-12 text-sm font-semibold text-gray-600 text-right">{value}%</div>
-                  </motion.div>
-                ))}
+                {Object.entries(progress.mastery).map(([subject, value], i) => {
+                  const colors = ['from-emerald-500 to-teal-600', 'from-violet-500 to-purple-600', 'from-rose-500 to-pink-600', 'from-green-500 to-emerald-600', 'from-slate-500 to-zinc-600']
+                  return (
+                    <motion.div 
+                      key={subject}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-center gap-4"
+                    >
+                      <div className="w-20 text-sm font-medium text-stone-700 capitalize">{subject}</div>
+                      <div className="flex-1">
+                        <Progress 
+                          value={value} 
+                          className="h-2.5 bg-stone-100"
+                        />
+                      </div>
+                      <div className="w-12 text-sm font-semibold text-stone-600 text-right">{value}%</div>
+                    </motion.div>
+                  )
+                })}
               </div>
 
-              <div className="mt-6 pt-4 border-t border-gray-100">
+              <div className="mt-6 pt-4 border-t border-stone-100">
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="flex items-center gap-2 text-sm text-gray-600"
+                  className="flex items-center gap-2 text-sm text-stone-600"
                 >
-                  <TrendingUp className="w-4 h-4 text-green-500" />
-                  <span>You're improving faster than <strong className="text-green-600">73%</strong> of students!</span>
+                  <TrendingUp className="w-4 h-4 text-emerald-500" />
+                  <span>You're improving faster than <strong className="text-emerald-600">73%</strong> of students!</span>
                 </motion.div>
               </div>
             </CardContent>
@@ -169,11 +169,11 @@ export default function DashboardPage() {
 
         {/* Recent Topics */}
         <motion.div variants={itemVariants}>
-          <Card className="border-0 shadow-md h-full">
+          <Card className="border-0 shadow-md h-full bg-white">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between">
+              <CardTitle className="flex items-center justify-between" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
                 <span>Recent Topics</span>
-                <BookOpen className="w-5 h-5 text-gray-400" />
+                <BookOpen className="w-5 h-5 text-stone-400" />
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -184,18 +184,18 @@ export default function DashboardPage() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.1 }}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                    className="flex items-center justify-between p-3 bg-stone-50 rounded-xl hover:bg-stone-100 transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-2 h-10 rounded-full ${item.color}-500`} />
+                      <div className={`w-2 h-10 rounded-full ${item.color}`} />
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{item.topic}</div>
-                        <div className="text-xs text-gray-500">{item.subject}</div>
+                        <div className="text-sm font-medium text-stone-900">{item.topic}</div>
+                        <div className="text-xs text-stone-500">{item.subject}</div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm font-semibold text-green-600">{item.progress}</div>
-                      <div className="text-xs text-gray-400">{item.mastery}% mastery</div>
+                      <div className="text-sm font-semibold text-emerald-600">{item.progress}</div>
+                      <div className="text-xs text-stone-400">{item.mastery}% mastery</div>
                     </div>
                   </motion.div>
                 ))}
@@ -204,7 +204,7 @@ export default function DashboardPage() {
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full mt-4 py-2.5 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-xl transition-colors"
+                className="w-full mt-4 py-2.5 text-sm font-medium text-teal-600 bg-teal-50 hover:bg-teal-100 rounded-xl transition-colors"
               >
                 Practice More →
               </motion.button>
@@ -215,11 +215,11 @@ export default function DashboardPage() {
 
       {/* Achievements */}
       <motion.div variants={itemVariants} className="mt-6">
-        <Card className="border-0 shadow-md">
+        <Card className="border-0 shadow-md bg-white">
           <CardHeader>
-            <CardTitle className="flex items-center justify-between">
+            <CardTitle className="flex items-center justify-between" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
               <span>Achievements</span>
-              <Award className="w-5 h-5 text-gray-400" />
+              <Award className="w-5 h-5 text-stone-400" />
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -234,13 +234,13 @@ export default function DashboardPage() {
                   className={`p-4 rounded-2xl text-center transition-all cursor-default ${
                     badge.earned 
                       ? `bg-gradient-to-br ${badge.color} text-white shadow-lg` 
-                      : 'bg-gray-50 border border-gray-100 opacity-50'
+                      : 'bg-stone-50 border border-stone-100 opacity-50'
                   }`}
                 >
-                  <div className={`mb-2 ${badge.earned ? 'text-white' : 'text-gray-400'}`}>
+                  <div className={`mb-2 ${badge.earned ? 'text-white' : 'text-stone-400'}`}>
                     {badge.icon}
                   </div>
-                  <div className={`text-sm font-medium ${badge.earned ? 'text-white' : 'text-gray-500'}`}>
+                  <div className={`text-sm font-medium ${badge.earned ? 'text-white' : 'text-stone-500'}`}>
                     {badge.name}
                   </div>
                   {badge.earned && (
@@ -256,12 +256,12 @@ export default function DashboardPage() {
       {/* Progress Ring */}
       <motion.div 
         variants={itemVariants}
-        className="mt-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl p-6 text-white shadow-lg"
+        className="mt-6 bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-600 rounded-2xl p-6 text-white shadow-lg"
       >
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <h2 className="text-xl font-bold mb-2">Today's Goal</h2>
-            <p className="text-blue-100">Complete 2 more topics to reach your daily target</p>
+            <h2 className="text-xl font-bold mb-2" style={{ fontFamily: 'var(--font-space-grotesk)' }}>Today's Goal</h2>
+            <p className="text-teal-100">Complete 2 more topics to reach your daily target</p>
             <div className="mt-4 flex items-center gap-3">
               <Progress value={60} className="flex-1 h-2 bg-white/20" />
               <span className="font-semibold">60%</span>
@@ -285,7 +285,7 @@ export default function DashboardPage() {
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span className="text-3xl font-bold">3/5</span>
-              <span className="text-xs text-blue-200">topics</span>
+              <span className="text-xs text-teal-200">topics</span>
             </div>
           </div>
         </div>
