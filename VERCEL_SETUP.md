@@ -8,8 +8,8 @@
 
 | Key | Value |
 |-----|-------|
-| `NEXT_PUBLIC_SUPABASE_URL` | `https://ljvrxjnrraxekqoqxwbf.supabase.co` |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `sb_publishable_f0I_wmjh2mrTowc_qGuw7Q_bU92oqck` |
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anon key |
 
 3. Click **Save** and **Redeploy**
 
