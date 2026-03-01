@@ -1,23 +1,58 @@
 import Link from "next/link"
-import { Brain, Sparkles, Target, Trophy, Zap, Globe } from "lucide-react"
+import { ArrowRight, Sparkles, Globe, GraduationCap, Trophy, Lightbulb, Calculator, Code, Atom, Leaf } from "lucide-react"
+
+const features = [
+  {
+    icon: <Sparkles className="w-6 h-6" />,
+    title: "Socratic AI Tutor",
+    description: "Our AI guides you through questions instead of giving answers. You'll actually understand, not just memorize.",
+    color: "bg-amber-100 text-amber-600"
+  },
+  {
+    icon: <GraduationCap className="w-6 h-6" />,
+    title: "Ontario Curriculum",
+    description: "Grade 9-12 aligned: Math, Physics, Chemistry, Biology, and Programming. Plus Financial Literacy.",
+    color: "bg-teal-100 text-teal-600"
+  },
+  {
+    icon: <Trophy className="w-6 h-6" />,
+    title: "Earn While You Learn",
+    description: "XP, streaks, badges, leaderboards. Transform studying into a satisfying game.",
+    color: "bg-orange-100 text-orange-600"
+  }
+]
+
+const subjects = [
+  { icon: <Calculator className="w-8 h-8" />, name: "Mathematics", desc: "Algebra to Calculus", color: "from-emerald-500 to-teal-600" },
+  { icon: <Atom className="w-8 h-8" />, name: "Physics", desc: "Mechanics & Energy", color: "from-violet-500 to-purple-600" },
+  { icon: <Sparkles className="w-8 h-8" />, name: "Chemistry", desc: "Reactions & Elements", color: "from-rose-500 to-pink-600" },
+  { icon: <Leaf className="w-8 h-8" />, name: "Biology", desc: "Cells to Ecosystems", color: "from-green-500 to-emerald-600" },
+  { icon: <Code className="w-8 h-8" />, name: "Programming", desc: "Python & JavaScript", color: "from-slate-500 to-zinc-600" },
+  { icon: <Globe className="w-8 h-8" />, name: "Bilingual", desc: "English & French", color: "from-blue-500 to-indigo-600" },
+]
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-[#FAFAF9]">
       {/* Header */}
-      <header className="border-b border-blue-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-              <Brain className="w-6 h-6 text-white" />
+      <header className="border-b border-stone-200/60 bg-white/70 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-teal-200">
+                <Lightbulb className="w-5 h-5 text-white" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full animate-pulse" />
             </div>
-            <span className="text-xl font-bold text-gray-900">STEMBridge</span>
+            <span className="text-xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+              STEMBridge
+            </span>
           </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
-            <a href="#curriculum" className="text-gray-600 hover:text-blue-600 transition-colors">Curriculum</a>
-            <Link href="/login" className="text-gray-600 hover:text-blue-600 transition-colors">Login</Link>
-            <Link href="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-stone-600 hover:text-teal-700 transition-colors text-sm font-medium">Features</a>
+            <a href="#subjects" className="text-stone-600 hover:text-teal-700 transition-colors text-sm font-medium">Subjects</a>
+            <Link href="/login" className="text-stone-600 hover:text-teal-700 transition-colors text-sm font-medium">Login</Link>
+            <Link href="/register" className="bg-stone-900 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-stone-800 transition-all hover:scale-105">
               Get Started
             </Link>
           </nav>
@@ -26,113 +61,161 @@ export default function Home() {
 
       {/* Hero */}
       <main>
-        <section className="max-w-6xl mx-auto px-4 py-20 text-center">
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
-            Free AI-Powered STEM Tutoring
-          </div>
-          
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Learn STEM with an
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> AI Tutor</span>
-            <br />that teaches you to think
-          </h1>
-          
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            Canadian students use Socratic AI tutoring to master Math, Science, and Programming. 
-            Never get stuck — always move forward.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/register" className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
-              Start Learning Free
-            </Link>
-            <Link href="/dashboard" className="border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold hover:border-blue-300 hover:bg-blue-50 transition-colors">
-              View Demo
-            </Link>
+        <section className="relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-teal-200/30 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-200/30 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-teal-100/50 to-emerald-100/50 rounded-full blur-3xl" />
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-16 max-w-lg mx-auto">
-            <div>
-              <div className="text-3xl font-bold text-blue-600">10K+</div>
-              <div className="text-sm text-gray-500">Students</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600">50+</div>
-              <div className="text-sm text-gray-500">Topics</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600">Free</div>
-              <div className="text-sm text-gray-500">Forever</div>
+          <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="text-left">
+                <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-teal-100">
+                  <Sparkles className="w-4 h-4" />
+                  Free AI Tutoring for Canadians
+                </div>
+                
+                <h1 className="text-5xl md:text-6xl font-bold text-stone-900 mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+                  Learn STEM by{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
+                    thinking,
+                  </span>
+                  <br />not memorizing
+                </h1>
+                
+                <p className="text-xl text-stone-600 mb-8 max-w-lg leading-relaxed">
+                  Our AI tutor asks questions to guide you to answers. 
+                  Master Math, Science, and Programming with real understanding.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+                  <Link href="/register" className="inline-flex items-center gap-2 bg-teal-600 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-teal-700 transition-all hover:shadow-xl hover:shadow-teal-200 hover:-translate-y-0.5">
+                    Start Learning Free
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                  <Link href="/dashboard" className="inline-flex items-center gap-2 border-2 border-stone-200 text-stone-700 px-8 py-4 rounded-2xl text-lg font-semibold hover:border-teal-300 hover:bg-teal-50 transition-all">
+                    View Demo
+                  </Link>
+                </div>
+
+                {/* Stats */}
+                <div className="flex gap-8 mt-12 pt-8 border-t border-stone-200">
+                  <div>
+                    <div className="text-3xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>10K+</div>
+                    <div className="text-sm text-stone-500">Canadian Students</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>50+</div>
+                    <div className="text-sm text-stone-500">Topics</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>100%</div>
+                    <div className="text-sm text-stone-500">Free Forever</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hero Visual */}
+              <div className="relative hidden lg:block">
+                <div className="relative w-full aspect-square">
+                  {/* Floating Cards */}
+                  <div className="absolute top-10 right-10 bg-white p-5 rounded-2xl shadow-xl border border-stone-100 animate-float" style={{ animationDelay: '0s' }}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center">
+                        <Calculator className="w-4 h-4 text-teal-600" />
+                      </div>
+                      <div className="text-sm font-semibold text-stone-900">Quadratic Equations</div>
+                    </div>
+                    <div className="h-2 bg-stone-100 rounded-full overflow-hidden">
+                      <div className="h-full w-3/4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full" />
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-20 left-0 bg-white p-5 rounded-2xl shadow-xl border border-stone-100 animate-float" style={{ animationDelay: '0.5s' }}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                        <Sparkles className="w-4 h-4 text-amber-600" />
+                      </div>
+                      <div className="text-sm font-semibold text-stone-900">AI Tutor</div>
+                    </div>
+                    <div className="text-xs text-stone-500">"What if we try factoring?"</div>
+                  </div>
+
+                  <div className="absolute top-1/2 left-10 -translate-y-1/2 bg-gradient-to-br from-teal-600 to-emerald-600 p-6 rounded-2xl shadow-2xl text-white animate-float" style={{ animationDelay: '1s' }}>
+                    <Trophy className="w-8 h-8 mb-2" />
+                    <div className="font-bold">Level Up!</div>
+                    <div className="text-sm text-teal-100">+250 XP earned</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Features */}
-        <section id="features" className="bg-white py-20">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              Why Students Choose STEMBridge
-            </h2>
+        <section id="features" className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-stone-900 mb-4" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+                Why it works
+              </h2>
+              <p className="text-stone-600 text-lg max-w-2xl mx-auto">
+                Traditional tutoring gives you fish. We teach you how to fish.
+              </p>
+            </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 border border-blue-100">
-                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
-                  <Brain className="w-6 h-6 text-white" />
+            <div className="grid md:grid-cols-3 gap-6">
+              {features.map((feature, i) => (
+                <div 
+                  key={i} 
+                  className="group p-8 rounded-3xl bg-stone-50 border border-stone-100 hover:bg-white hover:shadow-xl hover:shadow-stone-200/50 transition-all duration-300"
+                >
+                  <div className={`w-14 h-14 ${feature.color} rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-stone-900 mb-3" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+                    {feature.title}
+                  </h3>
+                  <p className="text-stone-600 leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Socratic AI Tutor</h3>
-                <p className="text-gray-600">
-                  Our AI never gives you answers — it asks questions to guide you to the solution yourself. 
-                  Learn by doing, not by copying.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100/50 border border-purple-100">
-                <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-4">
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Ontario Curriculum</h3>
-                <p className="text-gray-600">
-                  Aligned with Grade 9-12 Math, Science, and Programming. 
-                  From Algebra to Calculus, Physics to Biology.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-green-50 to-green-100/50 border border-green-100">
-                <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-4">
-                  <Trophy className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Gamified Learning</h3>
-                <p className="text-gray-600">
-                  Earn XP, maintain streaks, unlock achievements. 
-                  Make learning addictive, not a chore.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Curriculum */}
-        <section id="curriculum" className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              What You Can Learn
-            </h2>
+        {/* Subjects */}
+        <section id="subjects" className="py-24 bg-stone-50">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-stone-900 mb-4" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+                What you'll learn
+              </h2>
+              <p className="text-stone-600 text-lg">
+                Complete Ontario curriculum. Plus skills for life.
+              </p>
+            </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { icon: "📐", title: "Mathematics", desc: "Algebra, Calculus, Trigonometry, Statistics" },
-                { icon: "⚡", title: "Physics", desc: "Kinematics, Forces, Energy, Waves, Electricity" },
-                { icon: "🧪", title: "Chemistry", desc: "Atomic Structure, Reactions, Stoichiometry" },
-                { icon: "🧬", title: "Biology", desc: "Cells, Genetics, Evolution, Ecology" },
-                { icon: "💻", title: "Programming", desc: "Python, JavaScript, Web Development" },
-                { icon: "🌍", title: "Bilingual", desc: "Full English and French Support" },
-              ].map((item, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="text-3xl mb-3">{item.icon}</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {subjects.map((subject, i) => (
+                <div 
+                  key={i}
+                  className="group bg-white p-6 rounded-2xl border border-stone-100 hover:border-stone-300 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`w-14 h-14 bg-gradient-to-br ${subject.color} rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                      {subject.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+                        {subject.name}
+                      </h3>
+                      <p className="text-sm text-stone-500">{subject.desc}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -140,16 +223,20 @@ export default function Home() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ready to Master STEM?
+        <section className="py-24 bg-stone-900 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl" />
+          </div>
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+              Ready to actually understand?
             </h2>
-            <p className="text-blue-100 mb-8 text-lg">
-              Join thousands of Canadian students learning with AI.
+            <p className="text-stone-300 text-lg mb-10">
+              Join 10,000+ Canadian students learning with AI that teaches thinking.
             </p>
-            <Link href="/register" className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-50 transition-colors">
-              <Zap className="w-5 h-5" />
+            <Link href="/register" className="inline-flex items-center gap-3 bg-teal-500 text-white px-10 py-5 rounded-2xl text-xl font-semibold hover:bg-teal-400 transition-all hover:shadow-2xl hover:shadow-teal-500/30 hover:-translate-y-1">
+              <Lightbulb className="w-6 h-6" />
               Start Learning Free
             </Link>
           </div>
@@ -157,16 +244,16 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Brain className="w-4 h-4 text-white" />
+      <footer className="bg-stone-950 text-stone-400 py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-lg flex items-center justify-center">
+                <Lightbulb className="w-4 h-4 text-white" />
               </div>
-              <span className="text-white font-semibold">STEMBridge</span>
+              <span className="text-white font-semibold" style={{ fontFamily: 'var(--font-space-grotesk)' }}>STEMBridge</span>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 text-sm">
               <Globe className="w-4 h-4" />
               <span>Made for Canadian Students</span>
             </div>
