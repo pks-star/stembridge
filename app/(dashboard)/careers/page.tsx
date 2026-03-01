@@ -2,22 +2,22 @@
 
 import { useState } from 'react'
 import { careers, careerCategories, getCareersByCategory, type Career } from '@/data/curriculum/careers'
-import { Briefcase, TrendingUp, GraduationCap, DollarSign, ChevronRight, Search, Star } from 'lucide-react'
+import { Briefcase, TrendingUp, GraduationCap, DollarSign, ChevronRight, Search, Star, Laptop, Cog, Heart, FlaskConical, Wrench } from 'lucide-react'
 
 const categoryColors: Record<string, string> = {
-  technology: 'from-blue-500 to-blue-600',
-  engineering: 'from-purple-500 to-purple-600',
-  healthcare: 'from-green-500 to-green-600',
-  sciences: 'from-emerald-500 to-emerald-600',
-  trades: 'from-orange-500 to-orange-600',
+  technology: 'from-slate-500 to-zinc-600',
+  engineering: 'from-violet-500 to-purple-600',
+  healthcare: 'from-rose-500 to-pink-600',
+  sciences: 'from-teal-500 to-emerald-600',
+  trades: 'from-amber-500 to-orange-600',
 }
 
-const categoryIcons: Record<string, string> = {
-  technology: '💻',
-  engineering: '⚙️',
-  healthcare: '🏥',
-  sciences: '🔬',
-  trades: '🔧',
+const categoryIcons: Record<string, React.ReactNode> = {
+  technology: <Laptop className="w-4 h-4" />,
+  engineering: <Cog className="w-4 h-4" />,
+  healthcare: <Heart className="w-4 h-4" />,
+  sciences: <FlaskConical className="w-4 h-4" />,
+  trades: <Wrench className="w-4 h-4" />,
 }
 
 export default function CareersPage() {

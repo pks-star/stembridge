@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Send, Bot, User, BookOpen, Sparkles, GraduationCap, Lightbulb, ArrowRight } from 'lucide-react'
+import { Send, Bot, User, BookOpen, Sparkles, GraduationCap, Lightbulb, ArrowRight, Calculator, Atom, FlaskConical, Leaf, Code2, Apple } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { curriculum } from '@/data/curriculum/ontario'
 import { Button } from '@/components/ui/button'
@@ -17,26 +17,26 @@ interface Message {
   timestamp: Date
 }
 
-const subjectIcons: Record<string, string> = {
-  math: '📐',
-  physics: '⚡',
-  chemistry: '🧪',
-  biology: '🧬',
-  coding: '💻',
+const subjectIcons: Record<string, React.ReactNode> = {
+  math: <Calculator className="w-4 h-4" />,
+  physics: <Atom className="w-4 h-4" />,
+  chemistry: <FlaskConical className="w-4 h-4" />,
+  biology: <Leaf className="w-4 h-4" />,
+  coding: <Code2 className="w-4 h-4" />,
 }
 
 const examplePrompts = [
-  { text: "Explain quadratic equations", icon: "📐" },
-  { text: "How does photosynthesis work?", icon: "🌱" },
-  { text: "What's Newton's first law?", icon: "🍎" },
-  { text: "Help me with Python functions", icon: "🐍" },
+  { text: "Explain quadratic equations", icon: <Calculator className="w-4 h-4" /> },
+  { text: "How does photosynthesis work?", icon: <Leaf className="w-4 h-4" /> },
+  { text: "What's Newton's first law?", icon: <Apple className="w-4 h-4" /> },
+  { text: "Help me with Python functions", icon: <Code2 className="w-4 h-4" /> },
 ]
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi there! 👋 I'm your STEMBridge AI tutor. I use Socratic learning — I'll guide you with questions instead of giving answers directly. This helps you truly understand!\n\nWhat would you like to explore today?",
+      content: "Hi there! I'm your STEMBridge AI tutor. I use Socratic learning — I'll guide you with questions instead of giving answers directly. This helps you truly understand!\n\nWhat would you like to explore today?",
       timestamp: new Date()
     }
   ])

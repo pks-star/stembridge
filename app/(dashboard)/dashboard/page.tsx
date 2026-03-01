@@ -83,7 +83,7 @@ export default function DashboardPage() {
       {/* Header */}
       <motion.div variants={itemVariants} className="mb-8">
         <h1 className="text-3xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
-          Welcome back! 👋
+          Welcome back!
         </h1>
         <p className="text-stone-500 mt-1">Keep up the great work. You're on a {progress.streak}-day streak!</p>
       </motion.div>
