@@ -14,7 +14,9 @@ import {
   Zap,
   Brain,
   Briefcase,
-  GraduationCap
+  GraduationCap,
+  Users,
+  Video
 } from 'lucide-react'
 
 function DashboardContent({ children }: { children: React.ReactNode }) {
@@ -43,6 +45,8 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
     { href: '/topics', label: t.nav.topics, icon: BookOpen },
     { href: '/exams', label: t.nav.examPrep, icon: GraduationCap },
     { href: '/careers', label: t.nav.careers, icon: Briefcase },
+    { href: '/groups', label: 'Study Groups', icon: Users },
+    { href: '/resources', label: 'Videos', icon: Video },
     { href: '/profile', label: t.nav.profile, icon: User },
   ]
 
