@@ -62,6 +62,19 @@ export const curriculum: Subject[] = [
       { id: 'js-basics', name: 'JavaScript Basics', name_fr: 'Bases JavaScript', prerequisites: [] },
       { id: 'web-dev', name: 'Web Development', name_fr: 'Développement web', prerequisites: ['js-basics'] },
     ]
+  },
+  {
+    id: 'financial-literacy',
+    name: 'Financial Literacy',
+    name_fr: 'Littératie financière',
+    topics: [
+      { id: 'budgeting', name: 'Budgeting', name_fr: 'Budgétisation', prerequisites: [] },
+      { id: 'taxes', name: 'Taxes & Deductions', name_fr: 'Taxes et déductions', prerequisites: [] },
+      { id: 'compound-interest', name: 'Compound Interest', name_fr: 'Intérêt composé', prerequisites: [] },
+      { id: 'investing', name: 'Investing Basics', name_fr: "Bases de l'investissement", prerequisites: [] },
+      { id: 'debt', name: 'Debt Management', name_fr: 'Gestion de la dette', prerequisites: [] },
+      { id: 'financial-goals', name: 'Financial Goals', name_fr: 'Objectifs financiers', prerequisites: [] },
+    ]
   }
 ]
 

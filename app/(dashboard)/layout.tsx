@@ -10,13 +10,17 @@ import {
   User,
   Flame,
   Zap,
-  Brain
+  Brain,
+  Briefcase,
+  GraduationCap
 } from 'lucide-react'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/chat', label: 'AI Tutor', icon: MessageSquare },
   { href: '/topics', label: 'Topics', icon: BookOpen },
+  { href: '/exams', label: 'Exam Prep', icon: GraduationCap },
+  { href: '/careers', label: 'Careers', icon: Briefcase },
   { href: '/profile', label: 'Profile', icon: User },
 ]
 
