@@ -16,7 +16,9 @@ import {
   Briefcase,
   GraduationCap,
   Users,
-  Video
+  Video,
+  Calculator,
+  Award
 } from 'lucide-react'
 
 function DashboardContent({ children }: { children: React.ReactNode }) {
@@ -47,6 +49,8 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
     { href: '/careers', label: t.nav.careers, icon: Briefcase },
     { href: '/groups', label: 'Study Groups', icon: Users },
     { href: '/resources', label: 'Videos', icon: Video },
+    { href: '/scholarships', label: 'Scholarships', icon: Award },
+    { href: '/calculators', label: 'Calculators', icon: Calculator },
     { href: '/profile', label: t.nav.profile, icon: User },
   ]
 
