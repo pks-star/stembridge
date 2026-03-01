@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { curriculum } from '@/data/curriculum/ontario'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 interface Message {
@@ -36,7 +36,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi there! 👋 I'm your STEMBridge AI tutor. I'm here to help you learn through guided questions — I won't give you answers directly, but I'll help you think through problems step by step.\n\nWhat would you like to explore today?",
+      content: "Hi there! 👋 I'm your STEMBridge AI tutor. I use Socratic learning — I'll guide you with questions instead of giving answers directly. This helps you truly understand!\n\nWhat would you like to explore today?",
       timestamp: new Date()
     }
   ])
@@ -161,11 +161,11 @@ Let me know what you already understand, and I'll guide you from there!`
   return (
     <div className="max-w-4xl mx-auto h-[calc(100vh-8rem)] flex flex-col gap-4">
       {/* Subject Quick Select */}
-      <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-purple-50">
+      <Card className="border-0 shadow-sm bg-gradient-to-r from-teal-50 to-emerald-50">
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-3">
-            <GraduationCap className="w-4 h-4 text-blue-600" />
-            <span className="text-sm font-semibold text-gray-700">Quick Subject Select</span>
+            <GraduationCap className="w-4 h-4 text-teal-600" />
+            <span className="text-sm font-semibold text-stone-700">Quick Subject Select</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {curriculum.map(subject => (
@@ -174,7 +174,7 @@ Let me know what you already understand, and I'll guide you from there!`
                 variant={selectedSubject === subject.id ? "default" : "secondary"}
                 size="sm"
                 onClick={() => handleSubjectSelect(subject.id)}
-                className="transition-all duration-200 hover:scale-105"
+                className="transition-all duration-200 hover:scale-105 bg-teal-600 hover:bg-teal-700"
               >
                 <span className="mr-1">{subjectIcons[subject.id]}</span>
                 {subject.name}
@@ -185,24 +185,24 @@ Let me know what you already understand, and I'll guide you from there!`
       </Card>
 
       {/* Chat Container */}
-      <Card className="flex-1 border-0 shadow-lg overflow-hidden">
+      <Card className="flex-1 border-0 shadow-lg overflow-hidden bg-white">
         {/* Header */}
         <div className="px-6 py-4 border-b bg-white/80 backdrop-blur-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br600 to-emerald from-teal--600 flex items-center justify-center">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full" />
               </div>
               <div>
-                <h2 className="font-semibold text-gray-900">AI Tutor</h2>
+                <h2 className="font-semibold text-stone-900" style={{ fontFamily: 'var(--font-space-grotesk)' }}>AI Tutor</h2>
                 <p className="text-xs text-muted-foreground">Socratic Learning • Always ready to help</p>
               </div>
             </div>
-            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-              <span className="w-2 h-2 bg-green-500 rounded-full mr-1.5 animate-pulse" />
+            <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full mr-1.5 animate-pulse" />
               Online
             </Badge>
           </div>
@@ -221,15 +221,15 @@ Let me know what you already understand, and I'll guide you from there!`
                   className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                 >
                   <Avatar className={`w-9 h-9 flex-shrink-0 ${msg.role === 'user' ? 'order-2' : ''}`}>
-                    <AvatarFallback className={msg.role === 'user' ? 'bg-blue-600' : 'bg-gradient-to-br from-purple-600 to-blue-600'}>
+                    <AvatarFallback className={msg.role === 'user' ? 'bg-stone-800 text-white' : 'bg-gradient-to-br from-teal-600 to-emerald-600 text-white'}>
                       {msg.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                     </AvatarFallback>
                   </Avatar>
                   <div className={`max-w-[75%] ${msg.role === 'user' ? 'items-end' : 'items-start'} flex flex-col`}>
                     <div className={`rounded-2xl px-4 py-3 shadow-sm ${
                       msg.role === 'user' 
-                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-tr-md' 
-                        : 'bg-white border border-gray-100 text-gray-900 rounded-tl-md'
+                        ? 'bg-gradient-to-br from-stone-800 to-stone-900 text-white rounded-tr-md' 
+                        : 'bg-white border border-stone-100 text-stone-900 rounded-tl-md'
                     }`}>
                       <p className="whitespace-pre-wrap text-[15px] leading-relaxed">{msg.content}</p>
                     </div>
@@ -248,16 +248,16 @@ Let me know what you already understand, and I'll guide you from there!`
                 className="flex gap-3"
               >
                 <Avatar className="w-9 h-9 flex-shrink-0">
-                  <AvatarFallback className="bg-gradient-to-br from-purple-600 to-blue-600">
+                  <AvatarFallback className="bg-gradient-to-br from-teal-600 to-emerald-600 text-white">
                     <Bot className="w-4 h-4" />
                   </AvatarFallback>
                 </Avatar>
-                <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-md px-4 py-3 shadow-sm">
+                <div className="bg-white border border-stone-100 rounded-2xl rounded-tl-md px-4 py-3 shadow-sm">
                   <div className="flex gap-1.5">
                     {[0, 1, 2].map((i) => (
                       <motion.div
                         key={i}
-                        className="w-2 h-2 bg-gray-400 rounded-full"
+                        className="w-2 h-2 bg-stone-400 rounded-full"
                         animate={{ y: [0, -6, 0] }}
                         transition={{ 
                           duration: 0.6, 
@@ -293,7 +293,7 @@ Let me know what you already understand, and I'll guide you from there!`
                   variant="outline"
                   size="sm"
                   onClick={() => handleExampleClick(prompt.text)}
-                  className="text-xs h-7 hover:bg-blue-50 hover:border-blue-200 transition-colors"
+                  className="text-xs h-7 hover:bg-teal-50 hover:border-teal-200 transition-colors border-stone-200"
                 >
                   <span className="mr-1">{prompt.icon}</span>
                   {prompt.text}
@@ -305,7 +305,7 @@ Let me know what you already understand, and I'll guide you from there!`
         )}
 
         {/* Input */}
-        <form onSubmit={handleSubmit} className="p-4 border-t bg-gray-50/50">
+        <form onSubmit={handleSubmit} className="p-4 border-t bg-stone-50/50">
           <div className="flex gap-2">
             <Input
               ref={inputRef}
@@ -313,14 +313,14 @@ Let me know what you already understand, and I'll guide you from there!`
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask me anything about Math, Science, or Programming..."
-              className="flex-1 px-4 py-6 bg-white shadow-sm border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 rounded-xl"
+              className="flex-1 px-4 py-6 bg-white shadow-sm border-stone-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-stone-900 placeholder:text-stone-400 rounded-xl"
               disabled={isLoading}
             />
             <Button
               type="submit"
               disabled={!input.trim() || isLoading}
               size="icon"
-              className="px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 rounded-xl"
+              className="px-6 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 rounded-xl"
             >
               <Send className="w-5 h-5" />
             </Button>
